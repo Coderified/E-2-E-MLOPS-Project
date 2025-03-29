@@ -15,8 +15,6 @@ pipeline {
                 }
             }
         }
-    }
-    stages {
         stage('Setting up Virt Env and install dependencies')
         {
             steps{
