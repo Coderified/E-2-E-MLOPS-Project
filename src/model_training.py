@@ -56,7 +56,7 @@ class ModelTrainer():
         try:
             logger.info("Model Initialize")
 
-            lgbm_model = lgb.LGBMClassifier()
+            lgbm_model = lgb.LGBMClassifier(force_row_wise=True)
 
             logger.info("Beginning HP tuning")
             
