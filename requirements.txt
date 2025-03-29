@@ -9,3 +9,4 @@ matplotlib
 imbalanced-learn
 mlflow
 lightgbm
+flask
