@@ -23,6 +23,6 @@ PROCESSED_TEST_FILE_PATH = os.path.join(PROCESSED_DIR,"proc_test.csv")
 
 ## MODEL TRAINING
 
-MODEL_OUTPUT_PATH = "artifacts/models/random_forest.pkl"
+MODEL_OUTPUT_PATH = "artifacts/models/lightgbm.pkl"
 
     

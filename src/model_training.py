@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 from sklearn.model_selection import RandomizedSearchCV
+import lightgbm as lgb
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score,precision_score,recall_score,f1_score
 from scipy.stats import randint
@@ -29,7 +30,7 @@ class ModelTrainer():
         self.test_path = test_path
         self.model_output_path = model_output_path
 
-        self.params_dist = RF_PARAMS
+        self.params_dist = LGB_PARAMS
         self.random_search_params = RANDOMSEARCH_PARAMS
 
     def load_split_data(self):
@@ -55,12 +56,12 @@ class ModelTrainer():
         try:
             logger.info("Model Initialize")
 
-            rf_model = RandomForestClassifier()
+            lgbm_model = lgb.LGBMClassifier()
 
             logger.info("Beginning HP tuning")
             
             random_search = RandomizedSearchCV(
-                estimator=rf_model,
+                estimator=lgbm_model,
                 param_distributions=self.params_dist,
                 n_iter = self.random_search_params["n_iter"],
                 n_jobs=self.random_search_params["n_jobs"],
@@ -136,14 +137,14 @@ class ModelTrainer():
                 mlflow.log_artifact(self.test_path,artifact_path="datasets")
 
                 X_train,y_train,X_test,y_test = self.load_split_data()
-                best_rf_model = self.train_model(X_train,y_train)
-                metrics = self.model_evaluation(best_rf_model,X_test,y_test)
-                self.save_model(best_rf_model)
+                best_lgbm_model = self.train_model(X_train,y_train)
+                metrics = self.model_evaluation(best_lgbm_model,X_test,y_test)
+                self.save_model(best_lgbm_model)
 
                 logger.info("Logging the model into mlflow")
                 mlflow.log_artifact(self.model_output_path)
                 
-                mlflow.log_params(best_rf_model.get_params())
+                mlflow.log_params(best_lgbm_model.get_params())
                 mlflow.log_metrics(metrics)
 
                 logger.info("Model training done")
