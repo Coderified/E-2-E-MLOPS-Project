@@ -2,4 +2,4 @@ venv/
 mlruns/
 logs/
 MLOPS_Proj1.egg-info/
-artifacts\models\random_forest.pkl/
+artifacts/models/random_forest.pkl/
