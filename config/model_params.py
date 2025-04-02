@@ -1,11 +1,13 @@
 from scipy.stats import randint, uniform
 
 LGB_PARAMS ={
-    'n_estimators':randint(100,400),
+    'n_estimators':100,
     'max_depth' : randint(5,40),
     'learning_rate': uniform(0.01,0.1),
     'num_leaves': randint(20,80),
-    'boosting_type' : ['gbdt']
+    'boosting_type' : ['gbdt'],
+    'verbose': 2,  # More detailed logging
+    'force_col_wise': True,
 } 
 
 RANDOMSEARCH_PARAMS = {"n_iter":5,

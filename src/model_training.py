@@ -56,7 +56,7 @@ class ModelTrainer():
         try:
             logger.info("Model Initialize")
 
-            lgbm_model = lgb.LGBMClassifier(force_col_wise=True,early_stopping_rounds=50)
+            lgbm_model = lgb.LGBMClassifier(force_col_wise=True)
 
             logger.info("Beginning HP tuning")
             
@@ -67,8 +67,7 @@ class ModelTrainer():
                 n_jobs=self.random_search_params["n_jobs"],
                 cv = self.random_search_params["cv"],
                 verbose =self.random_search_params["verbose"],
-                scoring=self.random_search_params["scoring"],
-                refit=True
+                scoring=self.random_search_params["scoring"]
             ) 
 
             logger.info("Starting HP tune")
