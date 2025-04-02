@@ -7,6 +7,7 @@ import lightgbm as lgb
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score,precision_score,recall_score,f1_score
 from scipy.stats import randint
+from sklearn.model_selection import train_test_split
 
 
 from src.logger import get_logger
@@ -56,6 +57,8 @@ class ModelTrainer:
         try:
             logger.info("Model Initialize")
 
+            X_train_split, X_val, y_train_split, y_val = train_test_split(X_train, y_train, test_size=0.2)
+
             lgbm_model = lgb.LGBMClassifier(force_col_wise=True,boosting_type='gbdt')
 
             logger.info("Beginning HP tuning")
@@ -67,12 +70,16 @@ class ModelTrainer:
                 n_jobs=self.random_search_params["n_jobs"],
                 cv = self.random_search_params["cv"],
                 verbose =self.random_search_params["verbose"],
-                scoring=self.random_search_params["scoring"]
+                scoring=self.random_search_params["scoring"],
+                refit=True
             ) 
 
             logger.info("Starting HP tune")
 
-            random_search.fit(X_train,y_train)
+            random_search.fit(X_train_split, y_train_split,
+            eval_set=[(X_val, y_val)],
+            eval_metric='binary_logloss',  # Or your preferred metric
+            callbacks=[lgb.early_stopping(stopping_rounds=50)])
 
             logger.info("HP tuning Done")
 
@@ -80,6 +87,7 @@ class ModelTrainer:
             bestmodel = random_search.best_estimator_
 
             logger.info(f"Best params are {bestparams}")
+           
 
             return bestmodel
         

@@ -1,7 +1,7 @@
 from scipy.stats import randint, uniform
 
 LGB_PARAMS ={
-    'n_estimators': randint(100,200),
+    'n_estimators': randint(700,900),
     'max_depth' : randint(5,40),
     'learning_rate': uniform(0.01,0.1),
     'num_leaves': randint(20,80),
