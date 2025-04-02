@@ -8,7 +8,7 @@ LGB_PARAMS ={
     
 } 
 
-RANDOMSEARCH_PARAMS = {"n_iter":5,
+RANDOMSEARCH_PARAMS = {"n_iter":3,
                      "n_jobs":-1,
                      "cv":3,
                      "verbose":2,

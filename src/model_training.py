@@ -23,7 +23,7 @@ import mlflow.sklearn
 #initialize logger
 logger = get_logger(__name__)
 
-class ModelTrainer():
+class ModelTrainer:
     #here processed train and processed test will be the train and test paths
     def __init__(self,train_path,test_path,model_output_path):
         self.train_path = train_path
