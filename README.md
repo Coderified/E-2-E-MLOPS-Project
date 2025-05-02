@@ -1,12 +1,12 @@
 # 🧠 E2E MLOps Classifier
 
-A complete Machine Learning workflow from data ingestion to model deployment using MLOps best practices.
+A complete Machine Learning workflow --> Hotel Booking Classifier --> from data ingestion to model deployment using MLOps best practices.
 
 ## 🎯 Problem Statement
-Predict a binary class (e.g., spam vs. ham, loan default, etc.) using a structured dataset, with robust experimentation, tracking, and deployment.
+Predict a binary class - Will the hotel room booked be cancelled or honoured ? --> using a structured dataset, with robust experimentation, tracking, and deployment.
 
 ## 🧠 Solution Overview
-Built a tree-based classifier with an end-to-end MLOps pipeline, integrating versioning, experiment tracking, CI/CD, and deployment to GCP using Docker.
+Built a classifier with an end-to-end MLOps pipeline, integrating versioning, experiment tracking, CI/CD, and deployment to GCP using Docker.
 
 ## 🛠️ Tech Stack
 - Python (pandas, scikit-learn, matplotlib)
